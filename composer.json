@@ -1,5 +1,5 @@
 {
-    "name": "magency/module-seosuite",
+    "name": "softcommerce/module-seosuite",
     "description": "SEO Suite extension for Magento 2",
     "require": {
         "php": "~8.0.0||~8.1.0||~8.2.0",
