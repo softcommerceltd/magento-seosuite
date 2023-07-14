@@ -1,0 +1,22 @@
+{
+    "name": "magency/module-seosuite",
+    "description": "SEO Suite extension for Magento 2",
+    "require": {
+        "php": "~8.0.0||~8.1.0||~8.2.0",
+        "magento/magento-composer-installer": "*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SoftCommerce\\SeoSuite\\": ""
+        }
+    },
+    "version": "1.0.0"
+}
