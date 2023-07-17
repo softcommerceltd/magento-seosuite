@@ -7,12 +7,13 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <seo>
-            <configuration>
-                <canonical_tag_enabled>0</canonical_tag_enabled>
-                <hreflang_tags_enabled>0</hreflang_tags_enabled>
-                <x_default>-1</x_default>
-            </configuration>
-        </seo>
+        <softcommerce_seosuite>
+            <hreflang>
+                <is_active>0</is_active>
+                <inc_reg_code>0</inc_reg_code>
+                <is_active_x_default>0</is_active_x_default>
+                <x_default_store>0</x_default_store>
+            </hreflang>
+        </softcommerce_seosuite>
     </default>
 </config>

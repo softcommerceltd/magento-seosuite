@@ -3,7 +3,9 @@
     "description": "SEO Suite extension for Magento 2",
     "require": {
         "php": "~8.0.0||~8.1.0||~8.2.0",
-        "magento/magento-composer-installer": "*"
+        "magento/module-catalog": "^104",
+        "magento/module-cms": "^104",
+        "softcommerce/module-core": "*"
     },
     "type": "magento2-module",
     "license": [

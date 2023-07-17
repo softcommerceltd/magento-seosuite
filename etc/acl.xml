@@ -12,7 +12,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="SoftCommerce_SeoSuite::seosuite_conf" title="Configuration for SeoSuite"/></resource>
+                            <resource id="SoftCommerce_SeoSuite::seosuite_conf" title="SeoSuite Config [softcommerce]"/></resource>
                     </resource>
                 </resource>
             </resource>

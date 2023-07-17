@@ -16,8 +16,4 @@
             </argument>
         </arguments>
     </type>
-    <!-- plugins -->
-    <type name="Magento\Store\Model\Store">
-        <plugin name="get_current_url_fix" type="SoftCommerce\SeoSuite\Plugin\Model\Store" sortOrder="10" />
-    </type>
 </config>
