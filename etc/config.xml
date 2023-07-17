@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <seo>
+            <configuration>
+                <canonical_tag_enabled>0</canonical_tag_enabled>
+                <hreflang_tags_enabled>0</hreflang_tags_enabled>
+                <x_default>-1</x_default>
+            </configuration>
+        </seo>
+    </default>
+</config>

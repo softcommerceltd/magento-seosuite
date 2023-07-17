@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="softcommerce_seosuite" translate="label" type="text" sortOrder="999" showInDefault="1">
+            <class>separator-top</class>
+            <label>SEO Suite</label>
+            <tab>softcommerce_tab</tab>
+            <resource>SoftCommerce_SeoSuite::seosuite_conf</resource>
+            <group id="hreflang" translate="label" type="text" sortOrder="1" showInDefault="1">
+                <label>Hreflang Tag Configuration</label>
+                <field id="is_active" translate="label" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Enable hreflang</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        Consider using hreflang to tell search engines about the variations of your content,
+                        so that they can understand that these pages are localized variations of the same contents.
+                        <a href="https://developers.google.com/search/docs/specialty/international/localized-versions" target="_blank">Find out more</a>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="inc_reg_code" translate="label" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Include region variations</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        The first code of the hreflang attribute is the language code followed by an optional region code.
+                        For example: en-GB (English language used in Great Britain) or de-ES (German language used in Spain)
+                    </comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="is_active_x_default" translate="label" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Enable x-default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        Consider using the x-default value to add a fallback page for unmatched languages,
+                        especially on language/country selectors or auto-redirecting home pages.
+                        <a href="https://developers.google.com/search/docs/specialty/international/localized-versions" target="_blank">Find out more</a>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="x_default_store" translate="label" type="select" showInDefault="1" showInWebsite="1">
+                    <label>X-default store</label>
+                    <source_model>SoftCommerce\SeoSuite\Model\Source\XdefaultStoreOptions</source_model>
+                    <comment>Choose applicable store for "x-default" hreflang tag.</comment>
+                    <depends>
+                        <field id="is_active_x_default">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,147 @@
+<?php
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+declare(strict_types=1);
+
+namespace SoftCommerce\SeoSuite\Model;
+
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
+
+/**
+ * @inheritDoc
+ */
+class Config implements ConfigInterface
+{
+    /**#@+
+     * XML Config Paths
+     */
+    private const XML_PATH_GENERAL_LOCALE_CODE = 'general/locale/code';
+    /**#@-*/
+
+    /**
+     * @var EntityTypeId\EntityPoolInterface[]
+     */
+    private array $entityTypeIds;
+
+    /**
+     * @var array
+     */
+    private array $localeInMemory = [];
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    private ScopeConfigInterface $scopeConfig;
+
+    /**
+     * @param ScopeConfigInterface $scopeConfig
+     * @param array $entityTypeIds
+     */
+    public function __construct(
+        ScopeConfigInterface $scopeConfig,
+        array $entityTypeIds = []
+    ) {
+        $this->scopeConfig = $scopeConfig;
+        $this->entityTypeIds = $entityTypeIds;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getEntityTypeId(): ?EntityTypeId\EntityPoolInterface
+    {
+        $result = null;
+        foreach ($this->entityTypeIds as $entityTypeId) {
+            if ($entityTypeId->isApplicable()) {
+                $result = $entityTypeId;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    public function getCmsHomepageIdentifier()
+    {
+        $homePageIdentifier = $this->scopeConfig->getValue(
+            \Magento\Cms\Helper\Page::XML_PATH_HOME_PAGE,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isActiveHreflang(): bool
+    {
+        return (bool) $this->scopeConfig->isSetFlag(
+            self::XML_PATH_HREFLANG_IS_ACTIVE,
+            ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function shouldHreflangIncludeRegionCode(): bool
+    {
+        return (bool) $this->scopeConfig->isSetFlag(
+            self::XML_PATH_HREFLANG_INC_REG_CODE,
+            ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isActiveHreflangXDefault(): bool
+    {
+        return (bool) $this->scopeConfig->isSetFlag(
+            self::XML_PATH_HREFLANG_IS_ACTIVE_XDEFAULT,
+            ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getHreflangXDefaultStoreId(): ?int
+    {
+        if (!$this->isActiveHreflangXDefault()) {
+            return null;
+        }
+
+        return (int) $this->scopeConfig->getValue(
+            self::XML_PATH_HREFLANG_XDEFAULT_STORE_ID,
+            ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLocaleCode(int $storeId): string
+    {
+        if (!isset($this->localeInMemory[$storeId])) {
+            $localCode = $this->scopeConfig->getValue(
+                self::XML_PATH_GENERAL_LOCALE_CODE,
+                ScopeInterface::SCOPE_STORES,
+                $storeId
+            );
+
+            if ($this->shouldHreflangIncludeRegionCode()) {
+                $localCode = str_replace('_', '-', $localCode);
+            } else {
+                $localCode = substr($localCode, 0, 2);
+            }
+
+            $this->localeInMemory[$storeId] = strtolower($localCode);
+        }
+
+        return $this->localeInMemory[$storeId];
+    }
+}

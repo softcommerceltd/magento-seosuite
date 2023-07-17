@@ -13,14 +13,14 @@ The core purpose of this extension is to provide on-page SEO functionality that 
 Using composer
 
 ```
-composer require softcommerceltd/module-url-rewrite-generator
+composer require softcommerce/module-seosuite
 ```
 
 ## Post Installation
 
 ```sh
 # Enable the module
-bin/magento module:enable SoftCommerce_UrlRewriteGenerator
+bin/magento module:enable SoftCommerce_SeoSuite
 ```
 
 In production mode:
@@ -41,17 +41,17 @@ bin/magento setup:di:compile
 Command options:
 
 ```
-bin/magento url_rewrite:category:generate [id|-i]
+bin/magento seosuite:category:generate [id|-i]
 ```
 
 Example:
 
 ```sh
 # Regenerate URL rewrites for all categories:
-bin/magento url_rewrite:category:generate
+bin/magento seosuite:category:generate
 
 # Generate URL rewrites for particular categories with IDs 25 & 26:
-bin/magento url_rewrite:category:generate -i 25,26
+bin/magento seosuite:category:generate -i 25,26
 ```
 
 ### Generate URL rewrites for Product
@@ -61,15 +61,15 @@ bin/magento url_rewrite:category:generate -i 25,26
 Command options:
 
 ``
-bin/magento url_rewrite:product:generate [id|-i]
+bin/magento seosuite:product:generate [id|-i]
 ``
 
 ```sh
 # Regenerate URL rewrites for all products:
-bin/magento url_rewrite:product:generate
+bin/magento seosuite:product:generate
 
 # Generate URL rewrites for particular products with IDs 25 & 26:
-bin/magento url_rewrite:product:generate -i 25,26
+bin/magento seosuite:product:generate -i 25,26
 ```
 
 ### Delete URL rewrites
@@ -77,15 +77,15 @@ bin/magento url_rewrite:product:generate -i 25,26
 Command options:
 
 ``
-bin/magento url_rewrite:delete [entity|-e || store|-s]
+bin/magento seosuite:delete [entity|-e || store|-s]
 ``
 
 ```sh
 # Delete URL rewrites for entity: product with store IDs: 1 and 2
-bin/magento url_rewrite:delete -e product -s 1,2
+bin/magento seosuite:delete -e product -s 1,2
 
 # Delete URL rewrites for product and category entities with store IDs 1, 2 and 3
-bin/magento url_rewrite:delete -e product,category -s 1,2,3
+bin/magento seosuite:delete -e product,category -s 1,2,3
 ```
 
 ## Support
@@ -101,9 +101,9 @@ Please see `LICENSE.txt` for full details of the OSL 3.0 license.
 ## Thanks for dropping by
 
 <p align="center">
-    <a href="https://softcommerce.co.uk" target="_blank">
+    <a href="https://softcommerce.io" target="_blank">
         <img src="https://softcommerce.co.uk/pub/media/banner/logo.svg" width="200" alt="Soft Commerce Ltd" />
     </a>
     <br />
-    <a href="https://softcommerce.co.uk/" target="_blank">https://softcommerce.io/</a>
+    <a href="https://softcommerce.io" target="_blank">https://softcommerce.io/</a>
 </p>
