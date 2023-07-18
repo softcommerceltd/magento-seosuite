@@ -1,0 +1,12 @@
+<?php
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php
+/** @var \SoftCommerce\SeoSuite\Block\Html\Head\Canonical $block */
+?>
+<?php if ($url = $block->getCanonicalUrl()): ?>
+    <link rel="canonical" href="<?= $url; ?>">
+<?php endif; ?>

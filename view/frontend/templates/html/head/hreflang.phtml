@@ -1,9 +1,7 @@
 <?php
 /**
- * Adds hreflang tags for language and regional URLs used by search engines.
- *
- * @see https://support.google.com/webmasters/answer/189077
- * @see https://jira.pluswerk.ag/browse/ROL-140
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
  */
 ?>
 <?php
@@ -11,7 +9,7 @@
 ?>
 <?php foreach ($block->getLinkAttributes() as $attribute): ?>
     <?php if (isset($attribute['href'], $attribute['hreflang'])): ?>
-        <link rel="alternate" href="<?= $attribute['href']; ?>" hreflang="<?= $attribute['hreflang']; ?>">
+        <link rel="alternate" hreflang="<?= $attribute['hreflang']; ?>" href="<?= $attribute['href']; ?>">
     <?php endif; ?>
 <?php endforeach; ?>
 <?php if ($xDefaultUrl = $block->getLinkXDefaultUrlAttribute()): ?>

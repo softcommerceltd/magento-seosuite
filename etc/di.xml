@@ -7,6 +7,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="SoftCommerce\SeoSuite\Model\ConfigInterface" type="SoftCommerce\SeoSuite\Model\Config"/>
+    <preference for="SoftCommerce\SeoSuite\Model\GetCanonicalUrlInterface" type="SoftCommerce\SeoSuite\Model\GetCanonicalUrl"/>
     <type name="SoftCommerce\SeoSuite\Model\Config">
         <arguments>
             <argument name="entityTypeIds" xsi:type="array">

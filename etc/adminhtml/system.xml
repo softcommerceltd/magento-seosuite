@@ -12,8 +12,8 @@
             <label>SEO Suite</label>
             <tab>softcommerce_tab</tab>
             <resource>SoftCommerce_SeoSuite::seosuite_conf</resource>
-            <group id="hreflang" translate="label" type="text" sortOrder="1" showInDefault="1">
-                <label>Hreflang Tag Configuration</label>
+            <group id="hreflang" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1">
+                <label>Hreflang Configuration</label>
                 <field id="is_active" translate="label" type="select" showInDefault="1" showInWebsite="1">
                     <label>Enable hreflang</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -57,6 +57,16 @@
                     <depends>
                         <field id="is_active_x_default">1</field>
                     </depends>
+                </field>
+            </group>
+            <group id="canonical" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1">
+                <label>Canonical Configuration</label>
+                <field id="is_active" translate="label" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Enable canonical URL for CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[A canonical URL is the URL of the best representative page from a group of duplicate pages. <a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" target="_blank">Find out more</a>]]>
+                    </comment>
                 </field>
             </group>
         </section>

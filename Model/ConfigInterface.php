@@ -22,6 +22,7 @@ interface ConfigInterface
     public const XML_PATH_HREFLANG_INC_REG_CODE = 'softcommerce_seosuite/hreflang/inc_reg_code';
     public const XML_PATH_HREFLANG_IS_ACTIVE_XDEFAULT = 'softcommerce_seosuite/hreflang/is_active_x_default';
     public const XML_PATH_HREFLANG_XDEFAULT_STORE_ID = 'softcommerce_seosuite/hreflang/x_default_store';
+    public const XML_PATH_CANONICAL_IS_ACTIVE = 'softcommerce_seosuite/canonical/is_active';
     /**#@-*/
 
     /**
@@ -50,8 +51,18 @@ interface ConfigInterface
     public function getHreflangXDefaultStoreId(): ?int;
 
     /**
+     * @return bool
+     */
+    public function isActiveCanonical(): bool;
+
+    /**
      * @param int $storeId
      * @return string
      */
     public function getLocaleCode(int $storeId): string;
+
+    /**
+     * @return bool
+     */
+    public function isStoreCodeUsedInUrl(): bool;
 }

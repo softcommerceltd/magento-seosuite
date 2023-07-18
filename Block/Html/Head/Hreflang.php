@@ -101,7 +101,8 @@ class Hreflang extends Template
     protected function generateLinkAttributes(StoreInterface $store): void
     {
         if (!$this->getLinkEntityTypeId()->isActive($store)
-            || !$url = $this->getLinkEntityTypeId()->getUrl($store)) {
+            || !$url = $this->getLinkEntityTypeId()->getUrl($store)
+        ) {
             return;
         }
 

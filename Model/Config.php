@@ -10,6 +10,7 @@ namespace SoftCommerce\SeoSuite\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\Store;
 
 /**
  * @inheritDoc
@@ -65,14 +66,6 @@ class Config implements ConfigInterface
         return $result;
     }
 
-    public function getCmsHomepageIdentifier()
-    {
-        $homePageIdentifier = $this->scopeConfig->getValue(
-            \Magento\Cms\Helper\Page::XML_PATH_HOME_PAGE,
-            ScopeInterface::SCOPE_STORE
-        );
-    }
-
     /**
      * @inheritDoc
      */
@@ -124,6 +117,17 @@ class Config implements ConfigInterface
     /**
      * @inheritDoc
      */
+    public function isActiveCanonical(): bool
+    {
+        return (bool) $this->scopeConfig->isSetFlag(
+            self::XML_PATH_CANONICAL_IS_ACTIVE,
+            ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getLocaleCode(int $storeId): string
     {
         if (!isset($this->localeInMemory[$storeId])) {
@@ -143,5 +147,13 @@ class Config implements ConfigInterface
         }
 
         return $this->localeInMemory[$storeId];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isStoreCodeUsedInUrl(): bool
+    {
+        return (bool) $this->scopeConfig->isSetFlag(Store::XML_PATH_STORE_IN_URL);
     }
 }

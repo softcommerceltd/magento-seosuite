@@ -1,4 +1,10 @@
 ## Changelog
 
+### Version 1.0.1
+- **Feature**: Implement canonical link tag.
+- **Fix**: Apply a fix to CMS pages, where all multi-store pages must work in pairs and return the favor with a hreflang tag pointing back to the origin of the reference.
+E.g. German variant that was reference from English version must point back to English variant.
+
 ### Version 1.0.0
+- **Feature**: Implement hreflang attribute.
 - **Feature**: New SEO Suite module for Magento 2.

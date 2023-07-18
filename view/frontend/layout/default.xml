@@ -8,6 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="head.additional">
+            <block class="SoftCommerce\SeoSuite\Block\Html\Head\Canonical" name="softcommerce.seosuite.canonical" template="SoftCommerce_SeoSuite::html/head/canonical.phtml"/>
             <block class="SoftCommerce\SeoSuite\Block\Html\Head\Hreflang" name="softcommerce.seosuite.hreflang" template="SoftCommerce_SeoSuite::html/head/hreflang.phtml"/>
         </referenceBlock>
     </body>

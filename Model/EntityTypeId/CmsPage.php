@@ -10,8 +10,6 @@ namespace SoftCommerce\SeoSuite\Model\EntityTypeId;
 
 use Magento\Cms\Api\Data\PageInterface;
 use Magento\Cms\Api\GetUtilityPageIdentifiersInterface;
-use Magento\Cms\Model\ResourceModel\Page\CollectionFactory;
-use Magento\Framework\DataObject;
 use Magento\Store\Api\Data\StoreInterface;
 use Magento\Store\Model\Store;
 
@@ -36,21 +34,13 @@ class CmsPage implements EntityPoolInterface
     private PageInterface $page;
 
     /**
-     * @var CollectionFactory
-     */
-    private CollectionFactory $cmsPageCollectionFactory;
-
-    /**
-     * @param CollectionFactory $cmsPageCollectionFactory
      * @param GetUtilityPageIdentifiersInterface $getUtilityPageIdentifiers
      * @param PageInterface $page
      */
     public function __construct(
-        CollectionFactory $cmsPageCollectionFactory,
         GetUtilityPageIdentifiersInterface $getUtilityPageIdentifiers,
         PageInterface $page
     ) {
-        $this->cmsPageCollectionFactory = $cmsPageCollectionFactory;
         $this->getUtilityPageIdentifiers = $getUtilityPageIdentifiers;
         $this->page = $page;
     }
@@ -93,41 +83,16 @@ class CmsPage implements EntityPoolInterface
      * @param StoreInterface $store
      * @return PageInterface|null
      */
-    public function getCmsPage(StoreInterface $store): ?PageInterface
+    private function getPage(StoreInterface $store): PageInterface|null
     {
-        if (!isset($this->dataInMemory[$store->getId()]['cmspage'])) {
-            $collection = $this->cmsPageCollectionFactory->create()
-                ->addFieldToFilter('store_id', $store->getId())
-                ->addFieldToFilter('page_group_identifier', $this->page->getPageGroupIdentifier())
-                ->addFieldToSelect(['page_id', 'identifier', 'is_active']);
-            $this->dataInMemory[$store->getId()]['cmspage'] = $collection->getFirstItem();
+        $page = null;
+        if ($this->isHomePage()
+            || !array_diff((array) $this->page->getStoreId(), [$store->getId(), Store::DEFAULT_STORE_ID])
+        ) {
+            $page = $this->page;
         }
 
-
-        return $this->dataInMemory[$store->getId()]['cmspage'] ?? null;
-    }
-
-    /**
-     * @param StoreInterface $store
-     * @return DataObject|PageInterface|null
-     */
-    private function getPage(StoreInterface $store): DataObject|PageInterface|null
-    {
-        if (in_array($store->getId(), $this->page->getStoreId())) {
-            return $this->page;
-        }
-
-        if (in_array(Store::DEFAULT_STORE_ID, $this->page->getStoreId())) {
-            return $this->page;
-        }
-
-        if (!$this->page->getPageGroupIdentifier()) {
-            return null;
-        }
-
-        $page = $this->getCmsPage($store);
-
-        return $page?->getId() ? $page : null;
+        return $page;
     }
 
     /**
@@ -140,5 +105,13 @@ class CmsPage implements EntityPoolInterface
         }
 
         return $this->dataInMemory['homepageid'];
+    }
+
+    /**
+     * @return bool
+     */
+    private function isHomePage(): bool
+    {
+        return $this->getHomepageIdentifier() === $this->page->getIdentifier();
     }
 }
