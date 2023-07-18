@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.0.2
+- **Enhancement**: Move the block classes to custom view model to avoid extending Magento's Template block class. [#1].
+
 ### Version 1.0.1
 - **Feature**: Implement canonical link tag.
 - **Fix**: Apply a fix to CMS pages, where all multi-store pages must work in pairs and return the favor with a hreflang tag pointing back to the origin of the reference.

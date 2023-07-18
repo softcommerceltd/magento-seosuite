@@ -5,8 +5,12 @@
  */
 ?>
 <?php
-/** @var \SoftCommerce\SeoSuite\Block\Html\Head\Canonical $block */
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \SoftCommerce\SeoSuite\ViewModel\HtmlHeadCanonical $viewModel
+ */
+$viewModel = $block->getViewModel();
 ?>
-<?php if ($url = $block->getCanonicalUrl()): ?>
+<?php if ($url = $viewModel->getCanonicalUrl()): ?>
     <link rel="canonical" href="<?= $url; ?>">
 <?php endif; ?>

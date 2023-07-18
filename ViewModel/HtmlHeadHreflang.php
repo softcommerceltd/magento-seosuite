@@ -6,11 +6,13 @@
 
 declare(strict_types=1);
 
-namespace SoftCommerce\SeoSuite\Block\Html\Head;
+namespace SoftCommerce\SeoSuite\ViewModel;
 
-use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Api\Data\StoreInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\SeoSuite\Model\ConfigInterface;
@@ -20,7 +22,7 @@ use SoftCommerce\SeoSuite\Model\Source\XdefaultStoreOptions;
 /**
  * @inheritDoc
  */
-class Hreflang extends Template
+class HtmlHeadHreflang implements ArgumentInterface
 {
     /**#@+
      * Object data keys
@@ -31,28 +33,52 @@ class Hreflang extends Template
     /**
      * @var ConfigInterface
      */
-    protected ConfigInterface $config;
+    private ConfigInterface $config;
 
     /**
      * @var DataStorageInterface
      */
-    protected DataStorageInterface $dataStorage;
+    private DataStorageInterface $dataStorage;
+
+    /**
+     * @var EntityPoolInterface|null
+     */
+    private ?EntityPoolInterface $entityPool = null;
+
+    /**
+     * @var RequestInterface
+     */
+    private RequestInterface $request;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    private StoreManagerInterface $storeManager;
+
+    /**
+     * @var UrlInterface
+     */
+    private UrlInterface $urlBuilder;
 
     /**
      * @param ConfigInterface $config
      * @param DataStorageInterfaceFactory $dataStorageFactory
-     * @param Context $context
-     * @param array $data
+     * @param RequestInterface $request
+     * @param StoreManagerInterface $storeManager
+     * @param UrlInterface $urlBuilder
      */
     public function __construct(
         ConfigInterface $config,
         DataStorageInterfaceFactory $dataStorageFactory,
-        Context $context,
-        array $data = []
+        RequestInterface $request,
+        StoreManagerInterface $storeManager,
+        UrlInterface $urlBuilder
     ) {
         $this->config = $config;
         $this->dataStorage = $dataStorageFactory->create();
-        parent::__construct($context, $data);
+        $this->request = $request;
+        $this->storeManager = $storeManager;
+        $this->urlBuilder = $urlBuilder;
     }
 
     /**
@@ -64,7 +90,7 @@ class Hreflang extends Template
             return [];
         }
 
-        foreach ($this->_storeManager->getStores() as $store) {
+        foreach ($this->storeManager->getStores() as $store) {
             $this->generateLinkAttributes($store);
         }
 
@@ -83,7 +109,7 @@ class Hreflang extends Template
         $storeId = $this->config->getHreflangXDefaultStoreId();
 
         if ($storeId === XdefaultStoreOptions::USE_DEFAULT_STORE) {
-            foreach ($this->_storeManager->getWebsites() as $website) {
+            foreach ($this->storeManager->getWebsites() as $website) {
                 if ($website->getIsDefault()) {
                     $storeId = (int) $website->getDefaultStore()->getId();
                     break;
@@ -98,7 +124,7 @@ class Hreflang extends Template
      * @param StoreInterface $store
      * @return void
      */
-    protected function generateLinkAttributes(StoreInterface $store): void
+    private function generateLinkAttributes(StoreInterface $store): void
     {
         if (!$this->getLinkEntityTypeId()->isActive($store)
             || !$url = $this->getLinkEntityTypeId()->getUrl($store)
@@ -119,9 +145,9 @@ class Hreflang extends Template
      * @param string $url
      * @return string
      */
-    protected function buildUrl(string $url): string
+    private function buildUrl(string $url): string
     {
-        if (!$queryValue = $this->_request->getQueryValue()) {
+        if (!$queryValue = $this->request->getQueryValue()) {
             return $url;
         }
 
@@ -131,7 +157,7 @@ class Hreflang extends Template
         $url = "{$urlComponents['scheme']}://{$urlComponents['host']}{$urlComponents['path']}";
         $url = sprintf('%s?%s', $url, $encodedQuery);
 
-        return trim($this->_urlBuilder->getUrl($url), '/');
+        return trim($this->urlBuilder->getUrl($url), '/');
     }
 
     /**
@@ -139,10 +165,10 @@ class Hreflang extends Template
      */
     private function getLinkEntityTypeId(): ?EntityPoolInterface
     {
-        if (!$this->hasData(self::LINK_ENTITY_TYP_ID)) {
-            $this->setData(self::LINK_ENTITY_TYP_ID, $this->config->getEntityTypeId());
+        if (null === $this->entityPool) {
+            $this->entityPool = $this->config->getEntityTypeId();
         }
 
-        return $this->getData(self::LINK_ENTITY_TYP_ID);
+        return $this->entityPool;
     }
 }

@@ -6,34 +6,27 @@
 
 declare(strict_types=1);
 
-namespace SoftCommerce\SeoSuite\Block\Html\Head;
+namespace SoftCommerce\SeoSuite\ViewModel;
 
-use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 use SoftCommerce\SeoSuite\Model\GetCanonicalUrlInterface;
 
 /**
  * @inheritDoc
  */
-class Canonical extends Template
+class HtmlHeadCanonical implements ArgumentInterface
 {
     /**
      * @var GetCanonicalUrlInterface
      */
-    protected GetCanonicalUrlInterface $getCanonicalUrl;
+    private GetCanonicalUrlInterface $getCanonicalUrl;
 
     /**
      * @param GetCanonicalUrlInterface $getCanonicalUrl
-     * @param Context $context
-     * @param array $data
      */
-    public function __construct(
-        GetCanonicalUrlInterface $getCanonicalUrl,
-        Context $context,
-        array $data = []
-    ) {
+    public function __construct(GetCanonicalUrlInterface $getCanonicalUrl)
+    {
         $this->getCanonicalUrl = $getCanonicalUrl;
-        parent::__construct($context, $data);
     }
 
     /**
