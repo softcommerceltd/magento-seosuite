@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.0.3
+- **Enhancement**: Add a `Hreflang identifier` to CMS Pages in order to group pages for referencing the back links.
+
 ### Version 1.0.2
 - **Enhancement**: Move the block classes to custom view model to avoid extending Magento's Template block class. [#1].
 
