@@ -9,6 +9,11 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="SoftCommerce_Core::softcommerce_core">
+                    <resource id="SoftCommerce_SeoSuite::base" title="SoftCommerce SEO Suite" translate="title" sortOrder="999">
+                        <resource id="SoftCommerce_SeoSuite::url_relationship_manage" title="Manage URL Relationship" translate="title" sortOrder="1"/>
+                    </resource>
+                </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">

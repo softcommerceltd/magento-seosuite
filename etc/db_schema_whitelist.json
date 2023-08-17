@@ -3,5 +3,24 @@
         "column": {
             "hreflang_identifier": true
         }
+    },
+    "softcommerce_seosuite_url": {
+        "column": {
+            "entity_id": true,
+            "status": true,
+            "request_path": true,
+            "target_path": true,
+            "type_id": true,
+            "store_id": true,
+            "updated_at": true
+        },
+        "index": {
+            "SOFTCOMMERCE_SEOSUITE_URL_TARGET_PATH": true,
+            "SOFTCOMMERCE_SEOSUITE_URL_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SOFTCOMMERCE_SEOSUITE_URL_REQUEST_PATH_TYPE_ID_STORE_ID": true
+        }
     }
 }

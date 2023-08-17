@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">softcommerce_seosuiteurl_form.softcommerce_seosuiteurl_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">URL Relation</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <label translate="true">URL Relation</label>
+        <dataScope>data</dataScope>
+        <namespace>softcommerce_seosuiteurl_form</namespace>
+        <ajaxSaveType>simple</ajaxSaveType>
+        <deps>
+            <dep>softcommerce_seosuiteurl_form.softcommerce_seosuiteurl_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="back" class="SoftCommerce\SeoSuiteUrl\Ui\Component\Control\Client\BackButton"/>
+            <button name="reset">
+                <class>reset</class>
+                <label translate="true">Reset</label>
+            </button>
+            <button name="delete" class="SoftCommerce\SeoSuiteUrl\Ui\Component\Control\DeleteButton"/>
+            <button name="save" class="SoftCommerce\SeoSuiteUrl\Ui\Component\Control\SaveSplitButton"/>
+        </buttons>
+    </settings>
+    <dataSource name="softcommerce_seosuiteurl_form_data_source" component="Magento_Ui/js/form/provider">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <!-- validateUrl path="softcommerce/seosuiteurl/validate"/ -->
+            <submitUrl path="softcommerce/seosuiteurl/save"/>
+        </settings>
+        <dataProvider class="SoftCommerce\SeoSuite\Ui\DataProvider\UrlRelationshipFormDataProvider" name="softcommerce_seosuiteurl_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Schedule Setting</label>
+            <dataScope>general</dataScope>
+            <componentType>fieldset</componentType>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Entity ID</label>
+                <dataType>number</dataType>
+                <dataScope>entity_id</dataScope>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="status" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Enabled</label>
+                <dataType>boolean</dataType>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="request_path" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Request Path</label>
+                <dataType>text</dataType>
+                <dataScope>request_path</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">The request path.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="target_path" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Target Path</label>
+                <dataType>text</dataType>
+                <dataScope>target_path</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">The target path.</description>
+                </tooltip>
+            </settings>
+        </field>
+        <field name="type_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Relationship Type</label>
+                <dataType>text</dataType>
+                <dataScope>type_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">The type of url relationship, e.g.: canonical.</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="SoftCommerce\SeoSuite\Model\Source\UrlRelationTypeIdOptions"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Store</label>
+                <dataType>text</dataType>
+                <dataScope>store_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description translate="true">Select the store.</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

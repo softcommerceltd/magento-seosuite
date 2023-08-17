@@ -1,10 +1,13 @@
 ## Changelog
 
+### Version 1.0.4
+- **Enhancement**: Add url relationship functionality to be able to specify custom url request and target paths for canonical and alternate attributes [#3]
+
 ### Version 1.0.3
-- **Enhancement**: Add a `Hreflang identifier` to CMS Pages in order to group pages for referencing the back links.
+- **Enhancement**: Add a `Hreflang identifier` to CMS Pages in order to group pages for referencing the back links. [#2]
 
 ### Version 1.0.2
-- **Enhancement**: Move the block classes to custom view model to avoid extending Magento's Template block class. [#1].
+- **Enhancement**: Move the block classes to custom view model to avoid extending Magento's Template block class. [#1]
 
 ### Version 1.0.1
 - **Feature**: Implement canonical link tag.

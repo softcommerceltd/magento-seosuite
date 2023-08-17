@@ -6,8 +6,40 @@
  */
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- cms_page -->
     <table name="cms_page">
         <column xsi:type="varchar" name="hreflang_identifier" nullable="true" length="128"
                 comment="Hreflang ID"/>
+    </table>
+    <!-- url_relationship -->
+    <table name="softcommerce_seosuite_url" resource="default" engine="innodb" comment="SEO Url Relationship">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="tinyint" name="status" unsigned="false" nullable="false" identity="false" default="0"
+                comment="Status"/>
+        <column xsi:type="varchar" name="request_path" nullable="true" length="255"
+                comment="Request Path"/>
+        <column xsi:type="varchar" name="target_path" nullable="true" length="255"
+                comment="Target Path"/>
+        <column xsi:type="smallint" name="type_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Type ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SOFTCOMMERCE_SEOSUITE_URL_REQUEST_PATH_TYPE_ID_STORE_ID">
+            <column name="request_path"/>
+            <column name="type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="SOFTCOMMERCE_SEOSUITE_URL_TARGET_PATH" indexType="btree">
+            <column name="target_path"/>
+        </index>
+        <index referenceId="SOFTCOMMERCE_SEOSUITE_URL_STORE_ID_ENTITY_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
     </table>
 </schema>

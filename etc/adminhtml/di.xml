@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- UI form buttons configuration -->
+    <virtualType name="SoftCommerce\SeoSuiteUrl\Ui\Component\Control\SaveSplitButton" type="SoftCommerce\Core\Ui\Component\Control\SaveSplitButtonExtended">
+        <arguments>
+            <argument name="targetName" xsi:type="string">softcommerce_seosuiteurl_form.softcommerce_seosuiteurl_form</argument>
+            <argument name="aclResource" xsi:type="string">SoftCommerce_SeoSuite::url_relationship_manage</argument>
+            <argument name="sortOrder" xsi:type="number">10</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SoftCommerce\SeoSuiteUrl\Ui\Component\Control\Client\BackButton" type="SoftCommerce\Core\Ui\Component\Control\BackButton">
+        <arguments>
+            <argument name="backUrl" xsi:type="string">*/*/</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SoftCommerce\SeoSuiteUrl\Ui\Component\Control\DeleteButton" type="SoftCommerce\Core\Ui\Component\Control\DeleteButton">
+        <arguments>
+            <argument name="idFieldName" xsi:type="string">id</argument>
+            <argument name="actionRoutePath" xsi:type="string">*/*/delete</argument>
+            <argument name="aclResource" xsi:type="string">SoftCommerce_SeoSuite::url_relationship_manage</argument>
+            <argument name="buttonClass" xsi:type="string">delete btn btn-secondary</argument>
+            <argument name="buttonLabel" xsi:type="string" translatable="true">Delete</argument>
+            <argument name="confirmationMessage" xsi:type="string" translatable="true">Confirm delete URL relation?</argument>
+            <argument name="sortOrder" xsi:type="number">90</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -8,20 +8,35 @@ declare(strict_types=1);
 
 namespace SoftCommerce\SeoSuite\Model;
 
-use Magento\Cms\Api\Data\PageInterface;
+use Magento\Catalog\Helper\Data as CatalogHelper;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\UrlInterface;
+use SoftCommerce\SeoSuite\Model\Source\UrlRelationTypeIdOptions;
 
+/**
+ * @inheritDoc
+ */
 class GetCanonicalUrl implements GetCanonicalUrlInterface
 {
+    /**
+     * @var CatalogHelper
+     */
+    private CatalogHelper $catalogHelper;
+
     /**
      * @var ConfigInterface
      */
     private ConfigInterface $config;
 
     /**
-     * @var PageInterface
+     * @var GetUrlRelationshipInterface
      */
-    private PageInterface $page;
+    private GetUrlRelationshipInterface $getUrlRelationship;
+
+    /**
+     * @var RequestInterface
+     */
+    private RequestInterface $request;
 
     /**
      * @var UrlInterface
@@ -30,16 +45,22 @@ class GetCanonicalUrl implements GetCanonicalUrlInterface
 
     /**
      * @param ConfigInterface $config
-     * @param PageInterface $page
+     * @param CatalogHelper $catalogHelper
+     * @param GetUrlRelationshipInterface $getUrlRelationship
+     * @param RequestInterface $request
      * @param UrlInterface $urlBuilder
      */
     public function __construct(
         ConfigInterface $config,
-        PageInterface $page,
+        CatalogHelper $catalogHelper,
+        GetUrlRelationshipInterface $getUrlRelationship,
+        RequestInterface $request,
         UrlInterface $urlBuilder
     ) {
         $this->config = $config;
-        $this->page = $page;
+        $this->catalogHelper = $catalogHelper;
+        $this->getUrlRelationship = $getUrlRelationship;
+        $this->request = $request;
         $this->urlBuilder = $urlBuilder;
     }
 
@@ -52,8 +73,7 @@ class GetCanonicalUrl implements GetCanonicalUrlInterface
             return null;
         }
 
-        $url = $this->urlBuilder->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
-        $url = strtok($url, '?');
+        $url = $this->getUrl();
 
         if ($this->isStoreCodeUsedInUrl($url)) {
             return $url;
@@ -63,11 +83,38 @@ class GetCanonicalUrl implements GetCanonicalUrlInterface
     }
 
     /**
+     * @return string
+     */
+    private function getUrl(): string
+    {
+        $requestPath = trim($this->request->getPathInfo(), '/');
+        if ($requestPath
+            && $targetPath = $this->getUrlRelationship->getTargetPath(
+                UrlRelationTypeIdOptions::CANONICAL,
+                $requestPath
+            )
+        ) {
+            return $this->urlBuilder->getDirectUrl($targetPath);
+        }
+
+        return $this->getCurrentUrlRewrite();
+    }
+
+    /**
+     * @return string
+     */
+    private function getCurrentUrlRewrite(): string
+    {
+        $url = $this->urlBuilder->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+        return strtok($url, '?');
+    }
+
+    /**
      * @return bool
      */
     private function canExecute(): bool
     {
-        return $this->config->isActiveCanonical() && $this->page->getId();
+        return $this->config->isActiveCanonical() && !$this->catalogHelper->getCategory();
     }
 
     /**

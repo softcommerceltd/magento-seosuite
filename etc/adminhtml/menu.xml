@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SoftCommerce_SeoSuite::base"
+             title="SEO Suite"
+             translate="title"
+             module="SoftCommerce_SeoSuite"
+             sortOrder="0"
+             parent="SoftCommerce_Core::softcommerce_core"
+             resource="SoftCommerce_SeoSuite::base"/>
+        <add id="SoftCommerce_SeoSuite::url_relationship"
+             title="Manage URL Relationship"
+             translate="title"
+             module="SoftCommerce_SeoSuite"
+             sortOrder="0"
+             parent="SoftCommerce_SeoSuite::base"
+             action="softcommerce/seosuiteurl/index"
+             resource="SoftCommerce_SeoSuite::url_relationship_manage"/>
+    </menu>
+</config>

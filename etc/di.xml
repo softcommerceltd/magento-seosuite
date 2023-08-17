@@ -8,12 +8,46 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="SoftCommerce\SeoSuite\Model\ConfigInterface" type="SoftCommerce\SeoSuite\Model\Config"/>
     <preference for="SoftCommerce\SeoSuite\Model\GetCanonicalUrlInterface" type="SoftCommerce\SeoSuite\Model\GetCanonicalUrl"/>
+    <preference for="SoftCommerce\SeoSuite\Model\GetUrlRelationshipInterface" type="SoftCommerce\SeoSuite\Model\GetUrlRelationship"/>
+    <preference for="SoftCommerce\SeoSuite\Api\Data\UrlRelationshipInterface" type="SoftCommerce\SeoSuite\Model\UrlRelationship"/>
+    <preference for="SoftCommerce\SeoSuite\Api\UrlRelationshipRepositoryInterface" type="SoftCommerce\SeoSuite\Model\UrlRelationshipRepository"/>
     <type name="SoftCommerce\SeoSuite\Model\Config">
         <arguments>
             <argument name="entityTypeIds" xsi:type="array">
                 <item name="category" xsi:type="object">SoftCommerce\SeoSuite\Model\EntityTypeId\Category</item>
                 <item name="product" xsi:type="object">SoftCommerce\SeoSuite\Model\EntityTypeId\Product</item>
                 <item name="cms_page" xsi:type="object">SoftCommerce\SeoSuite\Model\EntityTypeId\CmsPage</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Profile schedule UI list-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="softcommerce_seosuiteurl_listing_data_source" xsi:type="string">SoftCommerce\SeoSuite\Ui\Component\UrlRelationship\DataProvider\SearchResult</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="SoftCommerce\SeoSuite\Ui\Component\UrlRelationship\DataProvider\SearchResult" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="const">SoftCommerce\SeoSuite\Api\Data\UrlRelationshipInterface::DB_TABLE_NAME</argument>
+            <argument name="resourceModel" xsi:type="string">SoftCommerce\SeoSuite\Model\ResourceModel\UrlRelationship</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="SoftCommerce\SeoSuite\Api\Data\UrlRelationshipInterface" xsi:type="string">SoftCommerce\SeoSuite\Api\UrlRelationshipRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="SoftCommerce\SeoSuite\Api\Data\UrlRelationshipInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">SoftCommerce\SeoSuite\Api\Data\UrlRelationshipInterface::DB_TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">SoftCommerce\SeoSuite\Api\Data\UrlRelationshipInterface::ENTITY_ID</item>
+                </item>
             </argument>
         </arguments>
     </type>
