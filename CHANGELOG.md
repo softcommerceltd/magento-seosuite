@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.0.5
+- **Compatibility**: Add compatibility for Magento 2.4.6-p3 and Magento 2.4.7
+
 ### Version 1.0.4
 - **Enhancement**: Add url relationship functionality to be able to specify custom url request and target paths for canonical and alternate attributes [#3]
 
