@@ -1,0 +1,14 @@
+# Copyright © Soft Commerce Ltd. All rights reserved.
+# See LICENSE.txt for license details.
+
+interface CategoryInterface {
+    meta_robots: String @doc(description: "The meta robots for category page.") @resolver(class: "SoftCommerce\\SeoSuite\\Model\\Resolver\\Category\\MetaRobots")
+}
+
+type CmsPage implements RoutableInterface @doc(description: "Contains details about a CMS page.") {
+    meta_robots: String @doc(description: "The meta robots for CMS page.") @resolver(class: "SoftCommerce\\SeoSuite\\Model\\Resolver\\Cms\\CmsPageMetaRobots")
+}
+
+type CmsPageItem implements RoutableInterface @doc(description: "Contains details about a CMS page.") {
+    meta_robots: String @doc(description: "The meta robots for CMS page.") @resolver(class: "SoftCommerce\\SeoSuite\\Model\\Resolver\\Cms\\CmsPageMetaRobots")
+}

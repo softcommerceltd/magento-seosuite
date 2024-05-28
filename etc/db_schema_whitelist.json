@@ -1,7 +1,8 @@
 {
     "cms_page": {
         "column": {
-            "hreflang_identifier": true
+            "hreflang_identifier": true,
+            "meta_robots": true
         }
     },
     "softcommerce_seosuite_url": {

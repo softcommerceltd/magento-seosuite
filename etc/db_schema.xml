@@ -8,6 +8,8 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <!-- cms_page -->
     <table name="cms_page">
+        <column xsi:type="varchar" name="meta_robots" nullable="true"
+                comment="Meta Robots"/>
         <column xsi:type="varchar" name="hreflang_identifier" nullable="true" length="128"
                 comment="Hreflang ID"/>
     </table>

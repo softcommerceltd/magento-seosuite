@@ -6,7 +6,7 @@
  */
 -->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <fieldset name="search_engine_optimisation">
+    <fieldset name="search_engine_optimization">
         <field name="meta_robots">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -18,21 +18,6 @@
                 </item>
                 <item name="options" xsi:type="object">SoftCommerce\SeoSuite\Model\Source\Eav\MetaRobots</item>
             </argument>
-        </field>
-        <field name="hreflang_identifier" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">page</item>
-                </item>
-            </argument>
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Hreflang Identifier</label>
-                <dataScope>hreflang_identifier</dataScope>
-                <tooltip>
-                    <description translate="true">Used to group pages to create relations for hreflang tags.</description>
-                </tooltip>
-            </settings>
         </field>
     </fieldset>
 </form>

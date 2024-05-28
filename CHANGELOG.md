@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.1.1
+- **Feature**: Add meta robots support to CMS pages [#4]
+
 ### Version 1.1.0
 - **Compatibility**: Introduced support for PHP 8.3
 

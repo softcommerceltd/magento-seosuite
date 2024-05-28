@@ -51,4 +51,31 @@
             </argument>
         </arguments>
     </type>
+    <!-- meta robots -->
+    <virtualType name="SoftCommerce\SeoSuite\Model\Source\Eav\MetaRobots" type="Magento\Eav\Model\Entity\Attribute\Source\Config">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="default" xsi:type="array">
+                    <item name="value" xsi:type="string">system</item>
+                    <item name="label" xsi:type="string">System Default</item>
+                </item>
+                <item name="index_follow" xsi:type="array">
+                    <item name="value" xsi:type="string">index, follow</item>
+                    <item name="label" xsi:type="string" translatable="true">index, follow</item>
+                </item>
+                <item name="index_nofollow" xsi:type="array">
+                    <item name="value" xsi:type="string">index,nofollow</item>
+                    <item name="label" xsi:type="string" translatable="true">index, nofollow</item>
+                </item>
+                <item name="noindex_follow" xsi:type="array">
+                    <item name="value" xsi:type="string">noindex,follow</item>
+                    <item name="label" xsi:type="string" translatable="true">noindex, follow</item>
+                </item>
+                <item name="noindex_nofollow" xsi:type="array">
+                    <item name="value" xsi:type="string">noindex,nofollow</item>
+                    <item name="label" xsi:type="string" translatable="true">noindex, follow</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>
