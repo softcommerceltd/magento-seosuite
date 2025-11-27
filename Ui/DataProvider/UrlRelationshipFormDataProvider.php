@@ -45,7 +45,7 @@ class UrlRelationshipFormDataProvider extends ModifierPoolDataProvider
         string $requestFieldName,
         array $meta = [],
         array $data = [],
-        PoolInterface $pool = null
+        ?PoolInterface $pool = null
     ) {
         $this->collection = $collectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
