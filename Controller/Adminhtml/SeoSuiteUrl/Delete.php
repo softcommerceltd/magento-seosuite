@@ -28,19 +28,13 @@ class Delete extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'SoftCommerce_SeoSuite::url_relationship_manage';
 
     /**
-     * @var UrlRelationshipRepositoryInterface
-     */
-    private UrlRelationshipRepositoryInterface $repository;
-
-    /**
      * @param UrlRelationshipRepositoryInterface $repository
      * @param Context $context
      */
     public function __construct(
-        UrlRelationshipRepositoryInterface $repository,
+        private UrlRelationshipRepositoryInterface $repository,
         Context $context
     ) {
-        $this->repository = $repository;
         parent::__construct($context);
     }
 

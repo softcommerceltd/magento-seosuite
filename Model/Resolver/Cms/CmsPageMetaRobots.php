@@ -23,17 +23,10 @@ use Magento\Store\Model\ScopeInterface;
 class CmsPageMetaRobots implements ResolverInterface
 {
     /**
-     * @var ScopeConfigInterface
-     */
-    private ScopeConfigInterface $scopeConfig;
-
-    /**
      * @param ScopeConfigInterface $scopeConfig
      */
-    public function __construct(ScopeConfigInterface $scopeConfig)
-    {
-        $this->scopeConfig = $scopeConfig;
-    }
+    public function __construct(private ScopeConfigInterface $scopeConfig)
+    {}
 
     /**
      * @inheritdoc

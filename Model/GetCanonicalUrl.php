@@ -19,31 +19,6 @@ use SoftCommerce\SeoSuite\Model\Source\UrlRelationTypeIdOptions;
 class GetCanonicalUrl implements GetCanonicalUrlInterface
 {
     /**
-     * @var CatalogHelper
-     */
-    private CatalogHelper $catalogHelper;
-
-    /**
-     * @var ConfigInterface
-     */
-    private ConfigInterface $config;
-
-    /**
-     * @var GetUrlRelationshipInterface
-     */
-    private GetUrlRelationshipInterface $getUrlRelationship;
-
-    /**
-     * @var RequestInterface
-     */
-    private RequestInterface $request;
-
-    /**
-     * @var UrlInterface
-     */
-    private UrlInterface $urlBuilder;
-
-    /**
      * @param ConfigInterface $config
      * @param CatalogHelper $catalogHelper
      * @param GetUrlRelationshipInterface $getUrlRelationship
@@ -51,17 +26,12 @@ class GetCanonicalUrl implements GetCanonicalUrlInterface
      * @param UrlInterface $urlBuilder
      */
     public function __construct(
-        ConfigInterface $config,
-        CatalogHelper $catalogHelper,
-        GetUrlRelationshipInterface $getUrlRelationship,
-        RequestInterface $request,
-        UrlInterface $urlBuilder
+        private ConfigInterface $config,
+        private CatalogHelper $catalogHelper,
+        private GetUrlRelationshipInterface $getUrlRelationship,
+        private RequestInterface $request,
+        private UrlInterface $urlBuilder
     ) {
-        $this->config = $config;
-        $this->catalogHelper = $catalogHelper;
-        $this->getUrlRelationship = $getUrlRelationship;
-        $this->request = $request;
-        $this->urlBuilder = $urlBuilder;
     }
 
     /**

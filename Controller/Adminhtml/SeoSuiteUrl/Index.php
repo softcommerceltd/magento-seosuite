@@ -23,27 +23,15 @@ class Index extends Action
     public const ADMIN_RESOURCE = 'SoftCommerce_SeoSuite::url_relationship_manage';
 
     /**
-     * @var PageFactory
-     */
-    private PageFactory $resultPageFactory;
-
-    /**
-     * @var ForwardFactory
-     */
-    private ForwardFactory $resultForwardFactory;
-
-    /**
      * @param ForwardFactory $resultForwardFactory
      * @param PageFactory $resultPageFactory
      * @param Action\Context $context
      */
     public function __construct(
-        ForwardFactory $resultForwardFactory,
-        PageFactory $resultPageFactory,
+        private ForwardFactory $resultForwardFactory,
+        private PageFactory $resultPageFactory,
         Action\Context $context
     ) {
-        $this->resultPageFactory = $resultPageFactory;
-        $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context);
     }
 

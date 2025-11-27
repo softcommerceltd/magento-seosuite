@@ -19,49 +19,25 @@ use Magento\Store\Model\Store;
  */
 class CmsPage implements EntityPoolInterface
 {
-    /**#@+
-     * Const attributes
-     */
     public const HREFLANG_ID = 'hreflang_identifier';
     private const CMS_PAGE = 'cms_page';
     private const CMS_PAGE_COLLECTION = 'cms_page_collection';
     private const HOMEPAGE_ID = 'homepage_id';
 
-    /**#@-*/
-
-    /**
-     * @var CollectionFactory
-     */
-    private CollectionFactory $collectionFactory;
-
     /**
      * array
      */
     private array $dataInMemory = [];
-
-    /**
-     * @var GetUtilityPageIdentifiersInterface
-     */
-    private GetUtilityPageIdentifiersInterface $getUtilityPageIdentifiers;
-
-    /**
-     * @var PageInterface
-     */
-    private PageInterface $page;
-
     /**
      * @param CollectionFactory $collectionFactory
      * @param GetUtilityPageIdentifiersInterface $getUtilityPageIdentifiers
      * @param PageInterface $page
      */
     public function __construct(
-        CollectionFactory $collectionFactory,
-        GetUtilityPageIdentifiersInterface $getUtilityPageIdentifiers,
-        PageInterface $page
+        private CollectionFactory $collectionFactory,
+        private GetUtilityPageIdentifiersInterface $getUtilityPageIdentifiers,
+        private PageInterface $page
     ) {
-        $this->collectionFactory = $collectionFactory;
-        $this->getUtilityPageIdentifiers = $getUtilityPageIdentifiers;
-        $this->page = $page;
     }
 
     /**

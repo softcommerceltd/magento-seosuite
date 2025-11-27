@@ -22,41 +22,17 @@ use Magento\UrlRewrite\Model\UrlFinderInterface;
 class Category implements EntityPoolInterface
 {
     /**
-     * @var Registry
-     */
-    private Registry $registry;
-
-    /**
-     * @var RequestInterface
-     */
-    private RequestInterface $request;
-
-    /**
-     * @var ResourceModel\Category
-     */
-    private ResourceModel\Category $categoryResource;
-
-    /**
-     * @var UrlFinderInterface
-     */
-    private UrlFinderInterface $urlFinder;
-
-    /**
      * @param Registry $registry
      * @param RequestInterface $request
      * @param ResourceModel\Category $categoryResource
      * @param UrlFinderInterface $urlFinder
      */
     public function __construct(
-        Registry $registry,
-        RequestInterface $request,
-        ResourceModel\Category $categoryResource,
-        UrlFinderInterface $urlFinder
+        private Registry $registry,
+        private RequestInterface $request,
+        private ResourceModel\Category $categoryResource,
+        private UrlFinderInterface $urlFinder
     ) {
-        $this->registry = $registry;
-        $this->request = $request;
-        $this->categoryResource = $categoryResource;
-        $this->urlFinder = $urlFinder;
     }
 
     /**

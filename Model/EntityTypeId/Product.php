@@ -22,41 +22,17 @@ use Magento\UrlRewrite\Model\UrlFinderInterface;
 class Product implements EntityPoolInterface
 {
     /**
-     * @var Registry
-     */
-    private Registry $registry;
-
-    /**
-     * @var RequestInterface
-     */
-    private RequestInterface $request;
-
-    /**
-     * @var ResourceModel\Product
-     */
-    private ResourceModel\Product $productResource;
-
-    /**
-     * @var UrlFinderInterface
-     */
-    private UrlFinderInterface $urlFinder;
-
-    /**
      * @param Registry $registry
      * @param RequestInterface $request
      * @param ResourceModel\Product $productResource
      * @param UrlFinderInterface $urlFinder
      */
     public function __construct(
-        Registry $registry,
-        RequestInterface $request,
-        ResourceModel\Product $productResource,
-        UrlFinderInterface $urlFinder
+        private Registry $registry,
+        private RequestInterface $request,
+        private ResourceModel\Product $productResource,
+        private UrlFinderInterface $urlFinder
     ) {
-        $this->registry = $registry;
-        $this->request = $request;
-        $this->productResource = $productResource;
-        $this->urlFinder = $urlFinder;
     }
 
     /**

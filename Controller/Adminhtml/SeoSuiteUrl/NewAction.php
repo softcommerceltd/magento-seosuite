@@ -24,19 +24,13 @@ class NewAction extends Action implements HttpGetActionInterface
     public const ADMIN_RESOURCE = 'SoftCommerce_SeoSuite::url_relationship_manage';
 
     /**
-     * @var ForwardFactory
-     */
-    private ForwardFactory $resultForwardFactory;
-
-    /**
      * @param ForwardFactory $resultForwardFactory
      * @param Context $context
      */
     public function __construct(
-        ForwardFactory $resultForwardFactory,
+        private ForwardFactory $resultForwardFactory,
         Context $context
     ) {
-        $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context);
     }
 

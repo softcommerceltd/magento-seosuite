@@ -19,17 +19,10 @@ class XdefaultStoreOptions implements OptionSourceInterface
     public const USE_DEFAULT_STORE = 0;
 
     /**
-     * @var StoreManagerInterface
-     */
-    private StoreManagerInterface $storeManager;
-
-    /**
      * @param StoreManagerInterface $storeManager
      */
-    public function __construct(StoreManagerInterface $storeManager)
-    {
-        $this->storeManager = $storeManager;
-    }
+    public function __construct(private StoreManagerInterface $storeManager)
+    {}
 
     /**
      * @inheritDoc

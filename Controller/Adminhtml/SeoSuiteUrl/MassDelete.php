@@ -27,23 +27,17 @@ class MassDelete extends AbstractMassAction
     public const ADMIN_RESOURCE = 'SoftCommerce_SeoSuite::url_relationship_manage';
 
     /**
-     * @var ResourceModel\UrlRelationship
-     */
-    private ResourceModel\UrlRelationship $resource;
-
-    /**
      * @param ResourceModel\UrlRelationship $resource
      * @param ResourceModel\UrlRelationship\CollectionFactory $collectionFactory
      * @param Filter $filter
      * @param Context $context
      */
     public function __construct(
-        ResourceModel\UrlRelationship $resource,
+        private ResourceModel\UrlRelationship $resource,
         ResourceModel\UrlRelationship\CollectionFactory $collectionFactory,
         Filter $filter,
         Context $context
     ) {
-        $this->resource = $resource;
         parent::__construct($collectionFactory, $filter, $context);
     }
 

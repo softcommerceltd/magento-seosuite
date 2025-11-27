@@ -34,19 +34,13 @@ class Config implements ConfigInterface
     private array $localeInMemory = [];
 
     /**
-     * @var ScopeConfigInterface
-     */
-    private ScopeConfigInterface $scopeConfig;
-
-    /**
      * @param ScopeConfigInterface $scopeConfig
      * @param array $entityTypeIds
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig,
+        private ScopeConfigInterface $scopeConfig,
         array $entityTypeIds = []
     ) {
-        $this->scopeConfig = $scopeConfig;
         $this->entityTypeIds = $entityTypeIds;
     }
 

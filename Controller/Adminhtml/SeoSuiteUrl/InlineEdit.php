@@ -28,19 +28,13 @@ class InlineEdit extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'SoftCommerce_SeoSuite::url_relationship_manage';
 
     /**
-     * @var UrlRelationship
-     */
-    private UrlRelationship $resource;
-
-    /**
      * @param UrlRelationship $resource
      * @param Context $context
      */
     public function __construct(
-        UrlRelationship $resource,
+        private UrlRelationship $resource,
         Context $context
     ) {
-        $this->resource = $resource;
         parent::__construct($context);
     }
 

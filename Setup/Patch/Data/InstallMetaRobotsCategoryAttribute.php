@@ -21,25 +21,13 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 class InstallMetaRobotsCategoryAttribute implements DataPatchInterface
 {
     /**
-     * @var CategorySetupFactory
-     */
-    private CategorySetupFactory $categorySetupFactory;
-
-    /**
-     * @var ModuleDataSetupInterface
-     */
-    private ModuleDataSetupInterface $moduleDataSetup;
-
-    /**
      * @param CategorySetupFactory $categorySetupFactory
      * @param ModuleDataSetupInterface $moduleDataSetup
      */
     public function __construct(
-        CategorySetupFactory $categorySetupFactory,
-        ModuleDataSetupInterface $moduleDataSetup
+        private CategorySetupFactory $categorySetupFactory,
+        private ModuleDataSetupInterface $moduleDataSetup
     ) {
-        $this->categorySetupFactory = $categorySetupFactory;
-        $this->moduleDataSetup = $moduleDataSetup;
     }
 
     /**

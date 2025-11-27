@@ -32,24 +32,9 @@ class Save extends Action implements HttpPostActionInterface
     public const ADMIN_RESOURCE = 'SoftCommerce_SeoSuite::url_relationship_manage';
 
     /**
-     * @var DataPersistorInterface
-     */
-    private DataPersistorInterface $dataPersistor;
-
-    /**
      * @var UrlRelationshipInterface|null
      */
     private ?UrlRelationshipInterface $model = null;
-
-    /**
-     * @var UrlRelationshipInterfaceFactory
-     */
-    private UrlRelationshipInterfaceFactory $modelFactory;
-
-    /**
-     * @var UrlRelationshipRepositoryInterface
-     */
-    private UrlRelationshipRepositoryInterface $repository;
 
     /**
      * @param DataPersistorInterface $dataPersistor
@@ -58,14 +43,11 @@ class Save extends Action implements HttpPostActionInterface
      * @param Context $context
      */
     public function __construct(
-        DataPersistorInterface $dataPersistor,
-        UrlRelationshipInterfaceFactory $modelFactory,
-        UrlRelationshipRepositoryInterface $repository,
+        private DataPersistorInterface $dataPersistor,
+        private UrlRelationshipInterfaceFactory $modelFactory,
+        private UrlRelationshipRepositoryInterface $repository,
         Context $context
     ) {
-        $this->dataPersistor = $dataPersistor;
-        $this->modelFactory = $modelFactory;
-        $this->repository = $repository;
         parent::__construct($context);
     }
 
