@@ -1,5 +1,15 @@
 ## Changelog
 
+### Version 1.2.2
+- **Fix**: Use nullable type syntax for GraphQL resolver parameters
+
+### Version 1.2.1
+- **Fix**: Use nullable type syntax for optional PoolInterface parameter
+
+### Version 1.2.0
+- **Refactor**: Use constructor property promotion across controllers and models
+- **Compatibility**: Update PHP requirement - drop 8.0, add 8.4 support
+
 ### Version 1.1.1
 - **Feature**: Add meta robots support to CMS pages [#4]
 
